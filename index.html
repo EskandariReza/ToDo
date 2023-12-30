@@ -23,9 +23,6 @@
     <input class="input" type="text" placeholder="please write your task" />
     <button class="add">Add</button>
     <ul class="list">
-      <li>
-        <span><i>jamal</i> <button>x</button></span>
-      </li>
     </ul>
     <script>
       var input = document.querySelector(".input");
@@ -43,9 +40,13 @@
           return;
         }
         var li = document.createElement("li");
+        li.style.opacity= 0;
         li.innerHTML =
           "<span> <i>" + input.value + "</i> <button>x</button></span>";
         list.appendChild(li);
+        setTimeout(function () {
+          li.style.opacity= 1;
+          }, 300)
         input.value = "";
         input.focus();
       }
@@ -54,7 +55,7 @@
       });
       input.addEventListener("keydown", function (e) {
         console.log(e);
-        if (e.key === "Enter") {
+        if (e.key === "Enter" && e.ctrlKey) {
           add();
         }
       });
